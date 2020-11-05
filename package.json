@@ -1,0 +1,30 @@
+{
+  "name": "publicapi",
+  "version": "1.1.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/",
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "sequelize-cli": "^5.5.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-memjs": "^0.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "memjs": "^1.2.2",
+    "moment": "^2.26.0",
+    "multer": "^1.4.2",
+    "pg": "^8.0.3",
+    "sequelize": "^5.21.7",
+    "session-file-store": "^1.4.0"
+  }
+}

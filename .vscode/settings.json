@@ -1,0 +1,13 @@
+{
+  "git.ignoreLimitWarning": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Dracula",
+  "window.zoomLevel": -1,
+  "editor.fontLigatures": true,
+  "editor.fontSize": 18,
+  "editor.lineHeight": 24,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.rulers": [80, 120],
+  "editor.renderLineHighlight": "gutter"
+}
