@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<select onchange=changeHandler() name="state" id="state">
+  <option value="null">UF</option>
+</select>
+<select name="municipio" id="municipio">
+  <option value="null">Municipio</option>
+</select>
+<button onclick=remove()>remover
+</button>
+
+<body>
+  <script>
+    var select = document.querySelector( "#state" )
+    var municipio = document.querySelector( "#municipio" )
+    var municipiochild = document.querySelectorAll( "#municipio" )
+
+    function changeHandler() {
+      var uf = siglas.indexOf( select.value )
+      var id = id_state[uf]
+      var city = []
+      var optionsCityClass = document.getElementsByClassName( "options-city" )
+
+      xhr.open( "GET", `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${id}/distritos` );
+      xhr.onload = function ( e ) {
+        if ( xhr.readyState === 4 ) {
+          if ( xhr.status === 200 ) {
+            var response = JSON.parse( xhr.responseText );
+            response.sort().forEach( ( element, item ) => {
+              city[item] = element.nome
+            } )
+            document.querySelectorAll( ".options-city" ).forEach( element => {
+              element.remove()
+            } )
+            city.sort().forEach( ( element, item ) => {
+              var optionsCity = document.createElement( "option" )
+              optionsCity.className = "options-city"
+              optionsCity.value = item + 1;
+              optionsCity.innerHTML = city[item]
+              municipio.appendChild( optionsCity )
+            } );
+
+          } else {
+            console.error( xhr.statusText );
+          }
+        }
+      };
+      xhr.onerror = function ( e ) {
+        console.error( xhr.statusText );
+      };
+      xhr.send( null );
+    }
+
+
+    var siglas = []
+    var uf = []
+    var id_state = []
+    var xhr = new XMLHttpRequest();
+    xhr.open( "GET", "https://servicodados.ibge.gov.br/api/v1/localidades/estados" );
+    xhr.onload = function ( e ) {
+      if ( xhr.readyState === 4 ) {
+        if ( xhr.status === 200 ) {
+          var response = JSON.parse( xhr.responseText );
+
+          response.forEach( ( element, item ) => {
+            siglas[item] = element.sigla
+            uf[item] = element.sigla
+            id_state[item] = element.id
+          } )
+          uf.sort().forEach( ( element, item ) => {
+            var options = document.createElement( "option" )
+            options.value = uf[item]
+            options.text = options.value
+            select.appendChild( options )
+          } )
+        } else {
+          console.error( xhr.statusText );
+        }
+      }
+    };
+    xhr.onerror = function ( e ) {
+      console.error( xhr.statusText );
+    };
+    xhr.send( null );
+
+  </script>
+</body>
+
+</html>

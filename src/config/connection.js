@@ -1,6 +1,7 @@
-// const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config();
 module.exports = {
-  Test: {
+  development: {
     dialect: process.env.DIALECT,
     host: process.env.HOST,
     username: process.env.USER,
@@ -13,8 +14,8 @@ module.exports = {
       underscoredAll: true,
     },
   },
-  Production: {
-    dialect: process.env.DIALECT,
+  production: {
+    dialect: "postgres",
     host: process.env.HOST,
     username: process.env.USER,
     password: process.env.PASSWORD,

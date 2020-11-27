@@ -10,6 +10,16 @@ class UserController {
       return res.json(error.message);
     }
   }
+  async register(req, res) {
+    try {
+      const datas = req.body;
+      const result = await UserDomain.register(datas);
+      return res.json(result);
+    } catch (error) {
+      return res.json(error.message);
+    }
+  }
+
   signup(req, res) {
     return res.render("auth/signup");
   }
