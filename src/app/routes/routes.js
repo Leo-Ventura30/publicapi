@@ -11,7 +11,7 @@ const DashboardController = require("../controllers/DashboardController");
 const ScheduleController = require("../controllers/ScheduleController");
 
 routes.post("/signin", UserController.load);
-routes.post("/register", UserController.register);
+routes.post("/register", UserController.create);
 
 routes.use("/signup", guest);
 routes.get("/signup", UserController.signup);

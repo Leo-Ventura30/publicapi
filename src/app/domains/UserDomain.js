@@ -4,31 +4,41 @@ class UserController {
   async load(datas) {
     const { user, password } = datas;
     const hasUser = await User.findOne({
-      [Op.or]: [{ email: user, user }],
+      where: { [Op.or]: { email: user, user } },
     });
-    if (!!(await User.checkPassword(password))) {
-      console.log("true");
+    if (!hasUser || !(await hasUser.checkPassword(password))) {
+      throw new Error("Usuário ou senha invalido!");
     }
     const status = [true];
-    // if (user !== person.user || password !== person.password) {
-    //   throw new Error("Usuário ou senha invalidos!");
-    // }
-    console.log(hasUser);
     return status[0];
   }
-  async register(datas) {
-    console.log(datas);
+  async create(datas) {
     const hasUser = await User.findOne({
       where: {
-        email: datas.email,
+        [Op.or]: {
+          email: datas.email,
+          user: datas.user,
+          commerce: datas.commerce,
+        },
       },
     });
     if (hasUser) {
       throw new Error("Erro ao criar usuário ou usuário já existe");
     }
     await User.create(datas);
-
     return true;
+  }
+  async update(datas) {
+    const hasUser = await User.updateOne(
+      {
+        datas,
+      },
+      {
+        where: {
+          [Op.or]: { email: datas.email, user: datas.user },
+        },
+      }
+    );
   }
 }
 
