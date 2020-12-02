@@ -7,7 +7,7 @@ class UserController {
       where: { [Op.or]: { email: user, user } },
     });
     if (!hasUser || !(await hasUser.checkPassword(password))) {
-      throw new Error("Usuário ou senha invalido!");
+      throw new Error("Usuário ou senha ínvalido!");
     }
     const status = [true];
     return status[0];
