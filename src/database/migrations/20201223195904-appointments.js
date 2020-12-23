@@ -13,12 +13,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      dog: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       location: {
-        allowNull: true,
         type: Sequelize.STRING,
       },
       type: {
@@ -26,7 +21,6 @@ module.exports = {
         type: Sequelize.STRING,
       },
       value: {
-        allowNull: false,
         type: Sequelize.FLOAT,
       },
       status: {
@@ -34,9 +28,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 1,
       },
-      user_id: {
+      employers_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: "employers", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
+      users_id: {
+        allowNull: false,
+        defaultValue: Sequelize.UUIDV1,
+        type: Sequelize.UUID,
         references: { model: "users", key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",

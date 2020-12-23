@@ -9,35 +9,19 @@ module.exports = {
         defaultValue: Sequelize.UUIDV1,
         type: Sequelize.UUID,
       },
-      commerce: {
-        allowNull: false,
-        unique: true,
+      name: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
-      category: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      phone: {
+        allowNull: true,
+        unique: true,
+        type: Sequelize.INTEGER,
       },
       uf: {
-        allowNull: true,
         type: Sequelize.STRING,
       },
       city: {
-        allowNull: true,
-        type: Sequelize.STRING,
-      },
-      email: {
-        allowNull: true,
-        unique: true,
-        type: Sequelize.STRING,
-      },
-      user: {
-        allowNull: true,
-        unique: true,
-        type: Sequelize.STRING,
-      },
-      password_hash: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       created_at: {

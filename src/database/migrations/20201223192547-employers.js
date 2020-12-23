@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("users", {
+    return queryInterface.createTable("employers", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -59,6 +59,6 @@ module.exports = {
       Example:
 
     */
-    return queryInterface.dropTable("users");
+    return queryInterface.dropTable("employers");
   },
 };
