@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("schedules", {
+    return queryInterface.createTable("appoitments", {
       id: {
         allowNull: false,
         primaryKey: true,
