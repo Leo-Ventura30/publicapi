@@ -1,36 +1,16 @@
-const bcrypt = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    "User",
-    {
-      id: {
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV1,
-      },
-      commerce: DataTypes.STRING,
-      category: DataTypes.STRING,
-      uf: DataTypes.STRING,
-      city: DataTypes.STRING,
-      email: DataTypes.STRING,
-      user: DataTypes.STRING,
-      password: DataTypes.VIRTUAL,
-      password_hash: DataTypes.STRING,
+  const User = sequelize.define("User", {
+    id: {
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
     },
-    {
-      hooks: {
-        beforeSave: async (user) => {
-          if (user.password) {
-            user.password_hash = await bcrypt.hash(user.password, 8);
-          }
-        },
-      },
-    }
-  );
+    name: DataTypes.STRING,
+    phone: DataTypes.INTEGER,
+    uf: DataTypes.STRING,
+    city: DataTypes.STRING,
+  });
 
-  User.prototype.checkPassword = function (password) {
-    return bcrypt.compare(password, this.password_hash);
-  };
   return User;
 };
