@@ -1,10 +1,9 @@
-const { User } = require("../models");
-const UserDomain = require("../domains/UserDomain");
-class UserController {
+const EmployerDomain = require("../domains/EmployerDomain");
+class EmployerController {
   async load(req, res) {
     try {
       const datas = req.body;
-      const result = await UserDomain.load(datas);
+      const result = await EmployerDomain.load(datas);
       return res.json(result);
     } catch (error) {
       return res.json(error.message);
@@ -13,7 +12,7 @@ class UserController {
   async create(req, res) {
     try {
       const datas = req.body;
-      const result = await UserDomain.create(datas);
+      const result = await EmployerDomain.create(datas);
       return res.json(result);
     } catch (error) {
       return res.json(error.message);
@@ -22,7 +21,7 @@ class UserController {
   async update(req, res) {
     try {
       const datas = req.body;
-      const result = await UserDomain.update(datas);
+      const result = await EmployerDomain.update(datas);
       return res.json(result);
     } catch (error) {
       return res.json(error.message);
@@ -30,4 +29,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new EmployerController();

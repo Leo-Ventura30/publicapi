@@ -1,9 +1,9 @@
 const { Op } = require("sequelize");
-const { User } = require("../models/");
-class UserController {
+const { Employer, User } = require("../models");
+class EmployerDomains {
   async load(datas) {
     const { user, password } = datas;
-    const hasUser = await User.findOne({
+    const hasUser = await Employer.findOne({
       where: { [Op.or]: { email: user, user } },
     });
     if (!hasUser || !(await hasUser.checkPassword(password))) {
@@ -13,7 +13,7 @@ class UserController {
     return status[0];
   }
   async create(datas) {
-    const hasUser = await User.findOne({
+    const hasUser = await Employer.findOne({
       where: {
         [Op.or]: {
           email: datas.email,
@@ -29,7 +29,7 @@ class UserController {
     return true;
   }
   async update(datas) {
-    const hasUser = await User.updateOne(
+    const hasUser = await Employer.updateOne(
       {
         datas,
       },
@@ -42,4 +42,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new EmployerDomains();

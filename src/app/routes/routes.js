@@ -5,12 +5,12 @@ const routes = express.Router();
 const auth = require("../middleware/auth");
 const guest = require("../middleware/guest");
 
-const UserController = require("../controllers/UserController");
+const EmployerController = require("../controllers/EmployerController");
 const SessionController = require("../controllers/SessionController");
 const DashboardController = require("../controllers/DashboardController");
 const ScheduleController = require("../controllers/ScheduleController");
 
-routes.post("/register", UserController.create);
-routes.post("/signin", UserController.load);
+routes.post("/register", EmployerController.create);
+routes.post("/signin", EmployerController.load);
 
 module.exports = routes;
