@@ -28,21 +28,6 @@ class UserController {
       return res.json(error.message);
     }
   }
-
-  signup(req, res) {
-    return res.render("auth/signup");
-  }
-  async screate(req, res) {
-    const { name, user, password } = req.body;
-    const people = await User.findOne({ where: { user } });
-    if (people) {
-      return res.redirect("/signup");
-    } else {
-      await User.create({ name, user, password, avatar });
-    }
-
-    return res.redirect("/");
-  }
 }
 
 module.exports = new UserController();
