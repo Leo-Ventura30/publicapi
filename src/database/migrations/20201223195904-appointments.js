@@ -30,7 +30,8 @@ module.exports = {
       },
       employers_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        defaultValue: Sequelize.UUIDV1,
+        type: Sequelize.UUID,
         references: { model: "employers", key: "id" },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",

@@ -5,6 +5,7 @@ class UserController {
     try {
       const datas = req.body;
       const result = await UserDomain.load(datas);
+      console.log(result);
       return res.json(result);
     } catch (error) {
       return res.json(error.message);
