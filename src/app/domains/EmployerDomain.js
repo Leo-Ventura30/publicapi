@@ -9,8 +9,8 @@ class EmployerDomains {
     if (!hasUser || !(await hasUser.checkPassword(password))) {
       throw new Error("Usuário ou senha ínvalido!");
     }
-    const status = [true];
-    return status[0];
+    const { commerce, category, uf, city, email } = hasUser;
+    return { status: true, employer: [commerce, category, uf, city, email] };
   }
   async create(datas) {
     const hasUser = await Employer.findOne({
