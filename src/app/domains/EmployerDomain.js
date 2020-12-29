@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Employer, User } = require("../models");
+const { Employer } = require("../models");
 class EmployerDomains {
   async load(datas) {
     const { user, password } = datas;
@@ -28,19 +28,14 @@ class EmployerDomains {
     return true;
   }
   async update(datas) {
-    const hasUser = await Employer.updateOne(
-      {
-        datas,
-      },
-      {
-        where: {
-          [Op.or]: { email: datas.email, user: datas.user },
-        },
-      }
-    );
-    if (!hasUser) throw new Error("Erro ao atualizar usuário");
-
-    return true;
+    const hasUser = await Employer.findOne({ where: { email: datas.email } });
+    if (hasUser) {
+      const { id } = hasUser;
+      await hasUser.update(datas, {
+        where: { id },
+      });
+    }
+    return hasUser;
   }
 }
 

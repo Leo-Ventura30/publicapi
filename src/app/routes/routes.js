@@ -6,12 +6,16 @@ const auth = require("../middleware/auth");
 const guest = require("../middleware/guest");
 
 const EmployerController = require("../controllers/EmployerController");
-const SessionController = require("../controllers/SessionController");
-const DashboardController = require("../controllers/DashboardController");
+const UserController = require("../controllers/UserController");
+const AppointmentsController = require("../controllers/AppointmentsController");
 const ScheduleController = require("../controllers/ScheduleController");
 
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.load);
+routes.post("/dashboard/user/create", UserController.create);
+routes.post("/dashboard/appointments", AppointmentsController.create);
+routes.get("/dashboard/appointments", AppointmentsController.load);
+
 routes.put("/dashboard/update", EmployerController.update);
 
 module.exports = routes;
