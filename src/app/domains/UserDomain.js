@@ -7,20 +7,22 @@ const defaults = {
 };
 class UserDomains {
   async load(datas) {}
-  async create(datas) {
+  async create(datas, employers_id) {
     const { uf, city } = defaults;
-    const { phone, employers_id } = datas;
+    const { phone } = datas;
     const hasUser = await User.findOne({ where: { phone } });
 
-    if (hasUser) throw new Error("Usuário existente");
-
-    const createUser = await User.create({ uf, city, ...datas });
-
-    const { id } = createUser;
-    const data = { users_id: id, employers_id };
-    const findAppointment = await AppointmentsDomain.create(data);
-    console.log(findAppointment);
-    return 0;
+    if (!hasUser) {
+      var newUser = await User.create({ uf, city, ...datas });
+      console.log("[*] task: New user create");
+    }
+    const { id: users_id } = hasUser || newUser;
+    const newAppointment = await AppointmentsDomain.create(
+      users_id,
+      employers_id,
+      datas
+    );
+    return { newAppointment, status: true };
   }
   async update(datas) {}
 }

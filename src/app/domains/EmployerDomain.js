@@ -24,7 +24,7 @@ class EmployerDomains {
     });
     if (hasUser) throw new Error("Erro ao criar usuário ou usuário já existe");
 
-    await User.create(datas);
+    await Employer.create(datas);
     return true;
   }
   async update(datas) {

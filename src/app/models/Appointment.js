@@ -11,6 +11,16 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     value: DataTypes.FLOAT,
     status: DataTypes.INTEGER,
+    employers_id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.UUID,
+    },
+    users_id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.UUID,
+    },
   });
 
   Appointment.associate = (models) => {
