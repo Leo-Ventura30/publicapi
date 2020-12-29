@@ -1,8 +1,11 @@
 const { Appointment } = require("../models");
 class AppointmentsDomain {
   async load(datas = null) {
-    const hasUser = await Appointment.findAll({});
-    return hasUser;
+    const { employers_id } = datas;
+    const allAppointments = await Appointment.findAll({
+      where: { employers_id },
+    });
+    return allAppointments;
   }
   async create(users_id, employers_id, datas) {
     console.log(users_id, employers_id, datas);

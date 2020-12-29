@@ -9,15 +9,6 @@ class AppointmentsController {
       return res.json(error.message);
     }
   }
-  async create(req, res) {
-    try {
-      const datas = req.body;
-      const result = await AppointmentsDomain.create(datas);
-      return res.json(result);
-    } catch (error) {
-      return res.json(error.message);
-    }
-  }
   async update(req, res) {
     try {
       const datas = req.body;
