@@ -22,9 +22,8 @@ class EmployerDomains {
         },
       },
     });
-    if (hasUser) {
-      throw new Error("Erro ao criar usuário ou usuário já existe");
-    }
+    if (hasUser) throw new Error("Erro ao criar usuário ou usuário já existe");
+
     await User.create(datas);
     return true;
   }
@@ -39,6 +38,9 @@ class EmployerDomains {
         },
       }
     );
+    if (!hasUser) throw new Error("Erro ao atualizar usuário");
+
+    return true;
   }
 }
 

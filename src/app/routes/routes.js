@@ -11,6 +11,7 @@ const DashboardController = require("../controllers/DashboardController");
 const ScheduleController = require("../controllers/ScheduleController");
 
 routes.post("/register", EmployerController.create);
-routes.post("/signin", EmployerController.load);
+routes.post("/signin/dashboard", EmployerController.load);
+routes.put("/dashboard/update", EmployerController.update);
 
 module.exports = routes;
