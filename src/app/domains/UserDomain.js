@@ -6,7 +6,11 @@ const defaults = {
   city: "Santo André",
 };
 class UserDomains {
-  async load(datas) {}
+  async load(id) {
+    const hasUser = await User.findOne({ where: { id } });
+    const { name, phone, uf, city } = hasUser;
+    return { name, phone };
+  }
   async create(datas, employers_id) {
     const { uf, city } = defaults;
     const { phone } = datas;
@@ -22,7 +26,7 @@ class UserDomains {
       employers_id,
       datas
     );
-    return { newAppointment, status: true };
+    return { user: newUser, appointment: newAppointment, status: true };
   }
   async update(datas) {}
 }

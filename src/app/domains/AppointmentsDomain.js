@@ -1,15 +1,25 @@
 const { Appointment } = require("../models");
+const UserDomain = require("./UserDomain");
 class AppointmentsDomain {
-  async load(datas = null) {
-    const { employers_id } = datas;
+  async load(employers_id) {
     const allAppointments = await Appointment.findAll({
       where: { employers_id },
     });
-    return allAppointments;
+    const {
+      date,
+      location,
+      type,
+      value,
+      status,
+      users_id,
+    } = allAppointments[0];
+    const id = users_id;
+    const allUsers = await UserDomain.load(id);
+    return {
+      Appointments: { date, location, type, value, status, user: allUsers },
+    };
   }
   async create(users_id, employers_id, datas) {
-    console.log(users_id, employers_id, datas);
-
     const hasAppointment = await Appointment.create({
       date: new Date(),
       employers_id,

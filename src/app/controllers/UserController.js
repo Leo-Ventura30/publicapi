@@ -2,8 +2,7 @@ const UserDomain = require("../domains/UserDomain");
 class UserController {
   async load(req, res) {
     try {
-      const datas = req.body;
-      const result = await UserDomain.load(datas);
+      const result = await UserDomain.load();
       return res.json(result);
     } catch (error) {
       return res.json(error.message);
