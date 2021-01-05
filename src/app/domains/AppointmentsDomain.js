@@ -5,19 +5,10 @@ class AppointmentsDomain {
     const allAppointments = await Appointment.findAll({
       where: { employers_id },
     });
-    const {
-      date,
-      location,
-      type,
-      value,
-      status,
-      users_id,
-    } = allAppointments[0];
+    const { date, location, type, value, status, users_id } = allAppointments;
     const id = users_id;
     const allUsers = await UserDomain.load(id);
-    return {
-      Appointments: { date, location, type, value, status, user: allUsers },
-    };
+    return { date, location, type, value, status, user: allUsers };
   }
   async create(users_id, employers_id, datas) {
     const hasAppointment = await Appointment.create({

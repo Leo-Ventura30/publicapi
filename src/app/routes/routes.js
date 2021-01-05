@@ -13,6 +13,7 @@ const ScheduleController = require("../controllers/ScheduleController");
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.load);
 routes.post("/dashboard/user/create", UserController.create);
+
 routes.get("/dashboard/appointments", AppointmentsController.load);
 
 routes.put("/dashboard/update", EmployerController.update);
