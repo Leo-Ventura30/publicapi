@@ -15,8 +15,10 @@ class EmployerDomains {
     const { commerce, category, uf, city, email } = hasUser;
     return {
       status: true,
-      employer: { commerce, category, uf, city, email },
-      appointments: userAppointments,
+      company: {
+        employer: { commerce, category, uf, city, email },
+        appointments: userAppointments,
+      },
     };
   }
   async create(datas) {
