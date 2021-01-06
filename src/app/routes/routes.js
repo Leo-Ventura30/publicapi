@@ -8,7 +8,6 @@ const guest = require("../middleware/guest");
 const EmployerController = require("../controllers/EmployerController");
 const UserController = require("../controllers/UserController");
 const AppointmentsController = require("../controllers/AppointmentsController");
-const ScheduleController = require("../controllers/ScheduleController");
 
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.load);

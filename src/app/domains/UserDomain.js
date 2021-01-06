@@ -9,7 +9,7 @@ class UserDomains {
   async load(id) {
     const hasUser = await User.findOne({ where: { id } });
     const { name, phone, uf, city } = hasUser;
-    return { name, phone };
+    return { name, phone, uf, city };
   }
   async create(datas, employers_id) {
     const { uf, city } = defaults;

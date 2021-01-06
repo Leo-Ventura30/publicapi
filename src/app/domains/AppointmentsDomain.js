@@ -5,10 +5,35 @@ class AppointmentsDomain {
     const allAppointments = await Appointment.findAll({
       where: { employers_id },
     });
-    const { date, location, type, value, status, users_id } = allAppointments;
-    const id = users_id;
-    const allUsers = await UserDomain.load(id);
-    return { date, location, type, value, status, user: allUsers };
+    var obj = [];
+
+    allAppointments.forEach((element, key) => {
+      const { id, date, location, type, value, status, users_id } = element;
+
+      obj[key] = {
+        id,
+        date,
+        location,
+        type,
+        value,
+        status,
+        user: { users_id },
+      };
+    });
+    var count = 0;
+
+    for (var appointment of obj) {
+      const {
+        user: { users_id },
+      } = appointment;
+      const allUsers = await UserDomain.load(users_id);
+      obj[count].user = allUsers;
+      console.log(obj[count].user);
+      count++;
+    }
+    // const id = users_id;
+    // const allUsers = await UserDomain.load(id);
+    return obj;
   }
   async create(users_id, employers_id, datas) {
     const hasAppointment = await Appointment.create({
