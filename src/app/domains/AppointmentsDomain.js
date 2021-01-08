@@ -28,7 +28,6 @@ class AppointmentsDomain {
       } = appointment;
       const allUsers = await UserDomain.load(users_id);
       obj[count].user = allUsers;
-      console.log(obj[count].user);
       count++;
     }
     // const id = users_id;
