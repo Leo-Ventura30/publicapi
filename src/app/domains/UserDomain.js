@@ -21,7 +21,7 @@ class UserDomains {
       console.log("[*] task: New user create");
     }
     const { id: users_id } = hasUser || newUser;
-    const newAppointment = await AppointmentsDomain.create(
+    const newAppointment = AppointmentsDomain.acreate(
       users_id,
       employers_id,
       datas

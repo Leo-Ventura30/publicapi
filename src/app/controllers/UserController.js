@@ -15,6 +15,7 @@ class UserController {
       const result = await UserDomain.create(datas, employers_id);
       return res.json(result);
     } catch (error) {
+      console.log(error);
       return res.json(error.message);
     }
   }

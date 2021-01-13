@@ -1,6 +1,6 @@
 const { Appointment } = require("../models");
 const UserDomain = require("./UserDomain");
-class AppointmentsDomain {
+class AppointmentsDomains {
   async load(employers_id) {
     const allAppointments = await Appointment.findAll({
       where: { employers_id },
@@ -34,16 +34,17 @@ class AppointmentsDomain {
     // const allUsers = await UserDomain.load(id);
     return obj;
   }
-  async create(users_id, employers_id, datas) {
-    const hasAppointment = await Appointment.create({
-      date: new Date(),
-      employers_id,
-      users_id,
-      ...datas.appointment,
-    });
-    if (!hasAppointment) throw new Error("Erro ao criar agendamento");
-    return hasAppointment;
+
+  async acreate(users_id, employers_id, datas) {
+    // const hasAppointment = await Appointment.create({
+    //   date: new Date(),
+    //   employers_id,
+    //   users_id,
+    //   ...datas.appointment,
+    // });
+    // if (!hasAppointment) throw new Error("Erro ao criar agendamento");
+    return "hasAppointment";
   }
 }
 
-module.exports = new AppointmentsDomain();
+module.exports = new AppointmentsDomains();
