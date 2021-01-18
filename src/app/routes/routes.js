@@ -12,6 +12,7 @@ const AppointmentsController = require("../controllers/AppointmentsController");
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.load);
 routes.post("/dashboard/user/create", UserController.create);
+routes.post("/dashboard/appointments/create", AppointmentsController.create);
 
 routes.get("/dashboard/appointments", AppointmentsController.load);
 

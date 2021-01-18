@@ -21,11 +21,11 @@ class UserDomains {
       console.log("[*] task: New user create");
     }
     const { id: users_id } = hasUser || newUser;
-    const newAppointment = AppointmentsDomain.acreate(
+    const newAppointment = AppointmentsDomain.acreate({
       users_id,
       employers_id,
-      datas
-    );
+      datas,
+    });
     return { user: newUser, appointment: newAppointment, status: true };
   }
   async update(datas) {}

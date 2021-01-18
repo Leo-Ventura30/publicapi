@@ -35,14 +35,16 @@ class AppointmentsDomains {
     return obj;
   }
 
-  async acreate(users_id, employers_id, datas) {
-    // const hasAppointment = await Appointment.create({
-    //   date: new Date(),
-    //   employers_id,
-    //   users_id,
-    //   ...datas.appointment,
-    // });
-    // if (!hasAppointment) throw new Error("Erro ao criar agendamento");
+  async create(users_id, employers_id, appointment) {
+    console.log(users_id, employers_id, appointment);
+    const hasAppointment = await Appointment.create({
+      date: new Date(),
+      employers_id,
+      users_id,
+      ...appointment,
+    });
+    console.log(hasAppointment);
+    if (!hasAppointment) throw new Error("Erro ao criar agendamento");
     return "hasAppointment";
   }
 }
