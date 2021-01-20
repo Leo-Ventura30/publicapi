@@ -28,7 +28,6 @@ class UserDomains {
     });
     return { user: newUser, appointment: newAppointment, status: true };
   }
-  async update(datas) {}
 }
 
 module.exports = new UserDomains();
