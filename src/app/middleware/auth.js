@@ -1,7 +1,11 @@
 module.exports = (req, res, next) => {
-  if (req.session && req.session.people) {
-    res.locals.people = req.session.people;
+  console.log(req.token + req.auth);
+  if (req.token && req.auth) {
+    console.log(req.token + " " + req.auth);
+    res.token = req.auth;
     return next();
   }
-  return res.redirect("/");
+  return res
+    .status(401)
+    .json({ error: "puxa você não tem autorizão para acessar esta página" });
 };

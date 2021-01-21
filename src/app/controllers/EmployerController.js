@@ -4,6 +4,8 @@ class EmployerController {
     try {
       const datas = req.body;
       const result = await EmployerDomain.load(datas);
+      req.token = result.token;
+      req.auth = result.auth;
       return res.json(result);
     } catch (error) {
       return res.json(error.message);

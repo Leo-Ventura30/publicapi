@@ -9,6 +9,7 @@ const EmployerController = require("../controllers/EmployerController");
 const UserController = require("../controllers/UserController");
 const AppointmentsController = require("../controllers/AppointmentsController");
 
+routes.use("/dashboard/", auth);
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.load);
 routes.post("/dashboard/user/create", UserController.create);

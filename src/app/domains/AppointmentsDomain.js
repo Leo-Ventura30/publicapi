@@ -1,9 +1,10 @@
 const { Appointment } = require("../models");
 const UserDomain = require("./UserDomain");
+const { Op } = require("sequelize");
 class AppointmentsDomains {
   async load(employers_id) {
     const allAppointments = await Appointment.findAll({
-      where: { employers_id },
+      where: { [Op.and]: [{ employers_id, status: 1 }] },
     });
     var obj = [];
 
@@ -30,8 +31,6 @@ class AppointmentsDomains {
       obj[count].user = allUsers;
       count++;
     }
-    // const id = users_id;
-    // const allUsers = await UserDomain.load(id);
     return obj;
   }
 

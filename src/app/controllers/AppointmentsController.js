@@ -17,7 +17,9 @@ class AppointmentsController {
   }
   async load(req, res) {
     try {
-      const { employers_id } = req.body;
+      // const { employers_id } = req.body;
+      const employers_id = "a8ef9e10-4996-11eb-98fb-d9a3536a9ec7";
+
       const result = await AppointmentsDomain.load(employers_id);
       return res.json(result);
     } catch (error) {
