@@ -1,6 +1,7 @@
 const { Op } = require("sequelize");
 const { Employer } = require("../models");
 const AppointmentsDomain = require("./AppointmentsDomain");
+const jwt = require("jsonwebtoken");
 class EmployerDomains {
   async load(datas) {
     const { user, password } = datas;
@@ -10,10 +11,16 @@ class EmployerDomains {
     if (!hasUser || !(await hasUser.checkPassword(password))) {
       throw new Error("Usuário ou senha ínvalido!");
     }
+    const secret = "rosquinadeb@n@N!haAmaçada";
+    const token = jwt.sign({ employer: "Leo" }, secret, {
+      expiresIn: 300,
+    });
     if (token) {
       const { commerce, category, uf, city, email } = hasUser;
       const userAppointments = await AppointmentsDomain.load(hasUser.id);
       return {
+        auth: true,
+        token,
         company: {
           employer: { commerce, category, uf, city, email },
           appointments: userAppointments,
