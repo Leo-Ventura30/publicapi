@@ -8,10 +8,28 @@ class AppointmentsDomains {
     });
     var appointments = [];
     allAppointments.map((e, k) => {
-      const { id, date, location, type, value, status } = e;
-      appointments[k] = { id, date, location, type, value, status };
+      const {
+        id,
+        date,
+        location,
+        type,
+        value,
+        status,
+        createdAt,
+        updatedAt,
+      } = e;
+      appointments[k] = {
+        id,
+        date,
+        location,
+        type,
+        value,
+        status,
+        createdAt,
+        updatedAt,
+      };
     });
-    return { appointments };
+    return appointments;
   }
 
   async create(users_id, employers_id, appointment) {
