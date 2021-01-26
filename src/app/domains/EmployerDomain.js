@@ -22,14 +22,13 @@ class EmployerDomains {
       },
     });
     if (hasUser) throw new Error("Erro ao criar usuário ou usuário já existe");
-
     await Employer.create(datas);
+    console.log("[*] task: Create new employer ");
     return true;
   }
-  async update(datas) {
-    const hasUser = await Employer.findOne({ where: { email: datas.email } });
+  async update(id, datas) {
+    const hasUser = await Employer.findOne({ where: { id } });
     if (hasUser) {
-      const { id } = hasUser;
       await hasUser.update(datas, {
         where: { id },
       });
