@@ -1,10 +1,14 @@
 const EmployerDomain = require("../domains/EmployerDomain");
+const jwt = require("../services/jwt");
+
 class EmployerController {
   async load(req, res) {
     try {
       const datas = req.body;
-      const result = await EmployerDomain.load(datas);
-      return res.json(result);
+      const { auth, employer } = await EmployerDomain.load(datas);
+      const token = jwt.token(employer.id);
+      res.cookie("token", token, { secure: true, httpOnly: true });
+      return res.json({ auth, token }).status(200);
     } catch (error) {
       return res.json(error.message);
     }

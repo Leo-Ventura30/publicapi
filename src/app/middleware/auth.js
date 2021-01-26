@@ -10,8 +10,6 @@ module.exports = (req, res, next) => {
         auth: false,
         error: "Usuário não autenticado, por favor faça o login!",
       });
-
-    // se tudo estiver ok, salva no request para uso posterior
     req.employers_id = decoded.employers_id;
     next();
   });

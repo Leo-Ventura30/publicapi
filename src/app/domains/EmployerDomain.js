@@ -1,7 +1,5 @@
 const { Op } = require("sequelize");
 const { Employer } = require("../models");
-// const AppointmentsDomain = require("./AppointmentsDomain");
-const jwt = require("../services/jwt");
 class EmployerDomains {
   async load(datas) {
     const { user, password } = datas;
@@ -11,15 +9,7 @@ class EmployerDomains {
     if (!hasUser || !(await hasUser.checkPassword(password))) {
       throw new Error("Usuário ou senha ínvalido!");
     }
-    const token = jwt.token(hasUser.id);
-    if (token) {
-      return {
-        auth: true,
-        token,
-      };
-    } else {
-      throw new Error("Usuário não autenticado, faça login!");
-    }
+    return { auth: true, employer: hasUser };
   }
   async create(datas) {
     const hasUser = await Employer.findOne({
