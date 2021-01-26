@@ -18,7 +18,7 @@ class EmployerController {
         employer: { commerce, category, uf, city, email, user },
       });
     } catch (error) {
-      return res.json(error.message);
+      return res.json({ auth: false, error: error.message });
     }
   }
   async create(req, res) {
