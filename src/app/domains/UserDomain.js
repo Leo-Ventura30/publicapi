@@ -18,15 +18,23 @@ class UserDomains {
 
     if (!hasUser) {
       var newUser = await User.create({ uf, city, ...datas });
-      console.log("[*] task: New user create");
+      console.log("[*] task: Create new user ");
     }
     const { id: users_id } = hasUser || newUser;
-    const newAppointment = AppointmentsDomain.create({
-      users_id,
-      employers_id,
-      datas,
-    });
-    return { user: newUser, appointment: newAppointment, status: true };
+    const {
+      id,
+      date,
+      location,
+      type,
+      value,
+      createdAt,
+      updatedAt,
+    } = await AppointmentsDomain.create(users_id, employers_id, datas);
+    return {
+      user: newUser,
+      appointment: { id, date, location, type, value, createdAt, updatedAt },
+      status: true,
+    };
   }
 }
 

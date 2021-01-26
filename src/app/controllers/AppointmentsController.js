@@ -12,7 +12,6 @@ class AppointmentsController {
   async create(req, res) {
     try {
       const { employers_id } = req;
-      console.log(employers_id);
       const users_id = "56e60230-4f04-11eb-99d0-2d5c855fff4b";
       const { appointment } = req.body;
       // const result = await AppointmentsDomain.create(

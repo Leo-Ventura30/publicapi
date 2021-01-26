@@ -32,17 +32,18 @@ class AppointmentsDomains {
     return appointments;
   }
 
-  async create(users_id, employers_id, appointment) {
-    console.log(users_id, employers_id, appointment);
+  async create(users_id, employers_id, datas) {
     const hasAppointment = await Appointment.create({
       date: new Date(),
+      location: datas.city,
+      type: datas.appointment.type,
+      value: datas.appointment.value,
+      status: 1,
       employers_id,
       users_id,
-      ...appointment,
     });
-    console.log(hasAppointment);
     if (!hasAppointment) throw new Error("Erro ao criar agendamento");
-    return "hasAppointment";
+    return hasAppointment;
   }
 }
 
