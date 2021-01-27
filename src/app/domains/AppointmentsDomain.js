@@ -1,4 +1,4 @@
-const { Appointment } = require("../models");
+const { Appointment, User } = require("../models");
 const UserDomain = require("./UserDomain");
 const { Op } = require("sequelize");
 class AppointmentsDomains {
@@ -7,30 +7,20 @@ class AppointmentsDomains {
       where: { [Op.and]: { employers_id, status: 1 } },
     });
     var appointments = [];
+    var user = [];
+
     allAppointments.map((e, k) => {
-      const {
-        id,
-        date,
-        location,
-        type,
-        value,
-        status,
-        users_id,
-        createdAt,
-        updatedAt,
-      } = e;
-      appointments[k] = {
-        id,
-        date,
-        location,
-        type,
-        value,
-        status,
-        users_id,
-        createdAt,
-        updatedAt,
-      };
+      appointments[k] = e;
     });
+    var j = 0;
+    for (const i of appointments) {
+      console.log(i.users_id);
+      const hasUser = await User.findOne({ where: { id: i.users_id } });
+      user[j] = hasUser;
+      appointments[j].users_id = user[j];
+      j++;
+    }
+
     return { appointments };
   }
 
