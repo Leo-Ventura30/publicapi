@@ -15,6 +15,7 @@ class AppointmentsDomains {
         type,
         value,
         status,
+        users_id,
         createdAt,
         updatedAt,
       } = e;
@@ -25,11 +26,12 @@ class AppointmentsDomains {
         type,
         value,
         status,
+        users_id,
         createdAt,
         updatedAt,
       };
     });
-    return appointments;
+    return { appointments };
   }
 
   async create(users_id, employers_id, datas) {

@@ -1,15 +1,18 @@
 const { Op } = require("sequelize");
 const AppointmentsDomain = require("./AppointmentsDomain");
-const { User } = require("../models");
+const { User, Appointment } = require("../models");
 const defaults = {
   uf: "SP",
   city: "Santo André",
 };
 class UserDomains {
-  async load(id) {
+  async load(id, employers_id) {
     const hasUser = await User.findOne({ where: { id } });
-    const { name, phone, uf, city } = hasUser;
-    return { name, phone, uf, city };
+    const appointments = await Appointment.findAll({
+      where: { [Op.and]: { users_id: id, employers_id, status: 1 } },
+    });
+    const { name, phone, uf, city, id: users_id } = hasUser;
+    return { user: { users_id, name, phone, uf, city, appointments } };
   }
   async create(datas, employers_id) {
     const { uf, city } = defaults;
