@@ -14,7 +14,6 @@ class UserController {
     try {
       const datas = req.body;
       const { employers_id } = req;
-      console.log(employers_id);
       const result = await UserDomain.create(datas, employers_id);
       return res.json(result);
     } catch (error) {
