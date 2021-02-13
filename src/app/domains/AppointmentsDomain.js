@@ -41,7 +41,6 @@ class AppointmentsDomains {
     const hasAppointment = await Appointment.destroy({
       where: { employers_id, id },
     });
-    console.log(hasAppointment);
     if (hasAppointment !== 1)
       throw new Error("Usuário não existe, ou foi deletado!");
 
