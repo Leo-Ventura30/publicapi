@@ -15,6 +15,11 @@ routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.login);
 routes.post("/dashboard/user/create", UserController.create);
 routes.post("/dashboard/appointments/create", AppointmentsController.create);
+routes.delete(
+  "/dashboard/appointments/delete/:id",
+  AppointmentsController.delete
+);
+
 routes.post("/dashboard/logout", EmployerController.logout);
 
 routes.get("/dashboard/appointments", AppointmentsController.load);

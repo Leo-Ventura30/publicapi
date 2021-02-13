@@ -11,14 +11,17 @@ class AppointmentsController {
   }
   async create(req, res) {
     try {
+      const { id } = req.params;
+      return res.json(result);
+    } catch (error) {
+      return res.json(error.message);
+    }
+  }
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
       const { employers_id } = req;
-      const users_id = "56e60230-4f04-11eb-99d0-2d5c855fff4b";
-      const { appointment } = req.body;
-      // const result = await AppointmentsDomain.create(
-      //   users_id,
-      //   employers_id,
-      //   appointment
-      // );
+      const result = await AppointmentsDomain.delete(id, employers_id);
       return res.json(result);
     } catch (error) {
       return res.json(error.message);

@@ -14,7 +14,6 @@ class AppointmentsDomains {
     });
     var j = 0;
     for (const i of appointments) {
-      console.log(i.users_id);
       const hasUser = await User.findOne({ where: { id: i.users_id } });
       user[j] = hasUser;
       appointments[j].users_id = user[j];
@@ -34,8 +33,19 @@ class AppointmentsDomains {
       employers_id,
       users_id,
     });
-    if (!hasAppointment) throw new Error("Erro ao criar agendamento");
+    if (!hasAppointment)
+      throw new Error("Erro ao criar agendamento, tente novamente!");
     return hasAppointment;
+  }
+  async delete(id, employers_id) {
+    const hasAppointment = await Appointment.destroy({
+      where: { employers_id, id },
+    });
+    console.log(hasAppointment);
+    if (hasAppointment !== 1)
+      throw new Error("Usuário não existe, ou foi deletado!");
+
+    return { success: `Agendamento ${id} deletado!` };
   }
 }
 
