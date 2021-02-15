@@ -8,6 +8,6 @@
   "editor.lineHeight": 24,
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "editor.rulers": [80, 120],
+  "editor.rulers": [100, 120],
   "editor.renderLineHighlight": "gutter"
 }

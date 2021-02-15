@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  if (req.session && !req.session.people) {
+  if (req.auth && !req.token) {
     return next();
   }
 

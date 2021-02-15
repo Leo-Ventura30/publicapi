@@ -1,4 +1,9 @@
 node_modules
 src/tmp/. 
 src/app/public/img/profile
+
+
+.env
+
 ./test
+

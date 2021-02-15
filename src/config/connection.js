@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   production: {
-    dialect: "postgres",
+    dialect: process.env.DIALECT,
     host: process.env.HOST,
     username: process.env.USER,
     password: process.env.PASSWORD,
