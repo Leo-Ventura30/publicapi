@@ -1,5 +1,4 @@
 const { Appointment, User } = require("../models");
-const UserDomain = require("./UserDomain");
 const { Op } = require("sequelize");
 class AppointmentsDomains {
   async load(employers_id) {
@@ -45,6 +44,28 @@ class AppointmentsDomains {
       throw new Error("Usuário não existe, ou foi deletado!");
 
     return { success: `Agendamento ${id} deletado!` };
+  }
+  async update(id, employers_id, status) {
+    const hasAppointment = await Appointment.findOne({
+      where: { id, employers_id },
+    });
+    console.log(hasAppointment);
+    const wasUpdate = await Appointment.update(
+      { status: status, ...hasAppointment },
+      { where: { id, employers_id, status: 1 } }
+    );
+    if (wasUpdate <= 0)
+      return { message: "Agendamento ja está atualizado!", success: false };
+
+    return { message: "Agendamento atualizado com successo!", success: true };
+  }
+  async finalizeAppointment(id, employers_id) {
+    const status = 0;
+    const wasUpdate = await this.update(id, employers_id, status);
+    if (wasUpdate.success !== true)
+      throw new Error("Impossivel finalizar agendamento, ou ja finalizado!");
+
+    return { message: "Agendamento finalizado!" };
   }
 }
 

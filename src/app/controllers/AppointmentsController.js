@@ -29,8 +29,22 @@ class AppointmentsController {
   }
   async update(req, res) {
     try {
-      const datas = req.body;
-      const result = await AppointmentsDomain.update(datas);
+      const { employers_id } = req;
+      const { id } = req.params;
+      const result = await AppointmentsDomain.update(id, employers_id);
+      return res.json(result);
+    } catch (error) {
+      return res.json(error.message);
+    }
+  }
+  async finalize(req, res) {
+    try {
+      const { employers_id } = req;
+      const { id } = req.params;
+      const result = await AppointmentsDomain.finalizeAppointment(
+        id,
+        employers_id
+      );
       return res.json(result);
     } catch (error) {
       return res.json(error.message);

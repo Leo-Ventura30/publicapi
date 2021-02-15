@@ -15,15 +15,20 @@ routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.login);
 routes.post("/dashboard/user/create", UserController.create);
 routes.post("/dashboard/appointments/create", AppointmentsController.create);
+routes.post("/dashboard/logout", EmployerController.logout);
+
+routes.get("/dashboard/appointments", AppointmentsController.load);
+routes.get("/dashboard/employer/:id/appointments", UserController.load);
+
 routes.delete(
   "/dashboard/appointments/delete/:id",
   AppointmentsController.delete
 );
 
-routes.post("/dashboard/logout", EmployerController.logout);
-
-routes.get("/dashboard/appointments", AppointmentsController.load);
-routes.get("/dashboard/employer/:id/appointments", UserController.load);
 routes.put("/dashboard/update", EmployerController.update);
+routes.put(
+  "/dashboard/appointment/:id/closing",
+  AppointmentsController.finalize
+);
 
 module.exports = routes;
