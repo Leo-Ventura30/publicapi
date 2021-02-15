@@ -49,7 +49,6 @@ class AppointmentsDomains {
     const hasAppointment = await Appointment.findOne({
       where: { id, employers_id },
     });
-    console.log(hasAppointment);
     const wasUpdate = await Appointment.update(
       { status: status, ...hasAppointment },
       { where: { id, employers_id, status: 1 } }
@@ -59,8 +58,7 @@ class AppointmentsDomains {
 
     return { message: "Agendamento atualizado com successo!", success: true };
   }
-  async finalizeAppointment(id, employers_id) {
-    const status = 0;
+  async finalizeAppointment(id, employers_id, status) {
     const wasUpdate = await this.update(id, employers_id, status);
     if (wasUpdate.success !== true)
       throw new Error("Impossivel finalizar agendamento, ou ja finalizado!");

@@ -27,6 +27,10 @@ routes.delete(
 
 routes.put("/dashboard/update", EmployerController.update);
 routes.put(
+  "/dashboard/appointment/:id/updating",
+  AppointmentsController.update
+);
+routes.put(
   "/dashboard/appointment/:id/closing",
   AppointmentsController.finalize
 );

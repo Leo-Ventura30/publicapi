@@ -39,15 +39,19 @@ class AppointmentsController {
   }
   async finalize(req, res) {
     try {
-      const { employers_id } = req;
+      const {
+        employers_id,
+        body: { status },
+      } = req;
       const { id } = req.params;
       const result = await AppointmentsDomain.finalizeAppointment(
         id,
-        employers_id
+        employers_id,
+        status
       );
       return res.json(result);
     } catch (error) {
-      return res.json(error.message);
+      return res.json({ message: error.message });
     }
   }
 }
