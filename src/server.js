@@ -7,6 +7,7 @@ const app = express();
 app.disable("x-powered-by");
 
 app.use(cors());
+app.use(bodyParser.urlencoded());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
