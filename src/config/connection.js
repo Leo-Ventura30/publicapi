@@ -21,6 +21,7 @@ module.exports = {
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     operatorAliases: false,
+    ssl: true,
     define: {
       timestamps: true,
       underscored: true,
