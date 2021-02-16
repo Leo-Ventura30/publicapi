@@ -1,3 +1,4 @@
+
 // const UserDomain = require("../domains/UserDomain");
 // class UserController {
 //   async load(req, res) {
@@ -32,4 +33,3 @@
 //   }
 // }
 
-// module.exports = new UserController();
