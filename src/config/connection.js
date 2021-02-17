@@ -7,7 +7,6 @@ module.exports = {
     username: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
-    use_env_variable: process.env.DATABASE_URL,
     operatorAliases: false,
     ssl: true,
     define: {
@@ -23,7 +22,7 @@ module.exports = {
     password: process.env.PASSWORDENV,
     database: process.env.DATABASEENV,
     operatorAliases: false,
-    ssl: true,
+    ssl: false,
     define: {
       timestamps: true,
       underscored: true,
