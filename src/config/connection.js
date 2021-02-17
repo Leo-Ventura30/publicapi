@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
   production: {
+    connectionString: process.env.DATABASE_URL,
     dialect: process.env.DIALECT,
     host: process.env.HOST,
     username: process.env.USER,
