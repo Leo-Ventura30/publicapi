@@ -7,6 +7,7 @@ module.exports = {
     username: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
+    use_env_variable: process.env.DATABASE_URL,
     operatorAliases: false,
     ssl: true,
     define: {
