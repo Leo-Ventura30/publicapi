@@ -1,9 +1,7 @@
 node_modules
 src/tmp/. 
 src/app/public/img/profile
-<<<<<<< HEAD
+.gitignore
 
 .env
-=======
-./test
->>>>>>> master
+

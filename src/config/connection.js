@@ -16,4 +16,18 @@ module.exports = {
       underscoredAll: true,
     },
   },
+  development: {
+    dialect: process.env.DIALECTENV,
+    host: process.env.HOSTENV,
+    username: process.env.USERENV,
+    password: process.env.PASSWORDENV,
+    database: process.env.DATABASEENV,
+    operatorAliases: false,
+    ssl: true,
+    define: {
+      timestamps: true,
+      underscored: true,
+      underscoredAll: true,
+    },
+  },
 };
