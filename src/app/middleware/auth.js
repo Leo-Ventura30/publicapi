@@ -6,7 +6,8 @@ module.exports = (req, res, next) => {
 
   jwt.verify(token, process.env.SECRET, function (err, decoded) {
     if (err) {
-      console.log(err);
+      if (err.message === "jwt expired")
+        return res.json({ message: "Faça o login novamente!" });
       return res.status(500).json({
         auth: false,
         error: "Usuário não autenticado, por favor faça o login!",
