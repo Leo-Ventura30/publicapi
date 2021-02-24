@@ -7,16 +7,17 @@ class AppointmentsDomains {
     });
     var appointments = [];
     var user = [];
-
-    allAppointments.map((e, k) => {
-      appointments[k] = e;
+    allAppointments.map((element, key) => {
+      appointments[key] = element;
     });
-    var j = 0;
-    for (const i of appointments) {
-      const hasUser = await User.findOne({ where: { id: i.users_id } });
-      user[j] = hasUser;
-      appointments[j].users_id = user[j];
-      j++;
+    var itemCounter = 0;
+    for (const appointment of appointments) {
+      const hasUser = await User.findOne({
+        where: { id: appointment.users_id },
+      });
+      user[itemCounter] = hasUser;
+      appointments[itemCounter].users_id = user[itemCounter];
+      itemCounter++;
     }
 
     return { appointments };
