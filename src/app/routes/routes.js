@@ -15,12 +15,12 @@ routes.use("/dashboard/", auth);
 routes.get("/verify/:token/key", AuthController.tokenVerify);
 routes.post("/register", EmployerController.create);
 routes.post("/signin/dashboard", EmployerController.login);
-// routes.post("/dashboard/user/create", UserController.create);
+routes.post("/dashboard/user/create", UserController.create);
 routes.post("/dashboard/appointments/create", AppointmentsController.create);
 routes.post("/dashboard/logout", EmployerController.logout);
 
 routes.get("/dashboard/appointments", AppointmentsController.load);
-// routes.get("/dashboard/employer/:id/appointments", UserController.load);
+routes.get("/dashboard/employer/:id/appointments", UserController.load);
 
 routes.delete(
   "/dashboard/appointments/delete/:id",
