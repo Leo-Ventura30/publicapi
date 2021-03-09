@@ -1,6 +1,5 @@
 const EmployerDomain = require("../domains/EmployerDomain");
 const jwt = require("../services/jwt");
-const blacklist = [];
 
 class EmployerController {
   async login(req, res) {

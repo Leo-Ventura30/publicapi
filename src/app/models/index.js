@@ -9,35 +9,39 @@ const config = require("../../config/connection")[env];
 const db = {};
 
 let sequelize;
-if (config.development) {
-  sequelize = new Sequelize(process.env[config.development], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
-
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+try {
+  if (config.development) {
+    sequelize = new Sequelize(process.env[config.development], config);
+  } else {
+    sequelize = new Sequelize(
+      config.database,
+      config.username,
+      config.password,
+      config
     );
-  })
-  .forEach((file) => {
-    const model = sequelize["import"](path.join(__dirname, file));
-    db[model.name] = model;
+  }
+
+  fs.readdirSync(__dirname)
+    .filter((file) => {
+      return (
+        file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+      );
+    })
+    .forEach((file) => {
+      const model = sequelize["import"](path.join(__dirname, file));
+      db[model.name] = model;
+    });
+
+  Object.keys(db).forEach((modelName) => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
   });
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
+  db.sequelize = sequelize;
+  db.Sequelize = Sequelize;
+} catch (error) {
+  console.log(error.message);
+  return status(500);
+}
 module.exports = db;
