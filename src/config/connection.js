@@ -2,13 +2,16 @@ const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
   production: {
+    connectionString: process.env.DATABASE_URL,
     dialect: process.env.DIALECT,
     host: process.env.HOST,
     username: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     operatorAliases: false,
-    ssl: false,
+    ssl: {
+      rejectUnauthorized: false
+    },
     define: {
       timestamps: true,
       underscored: true,
