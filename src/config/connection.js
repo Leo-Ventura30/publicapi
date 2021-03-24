@@ -1,8 +1,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
+console.log("Conectando...");
 module.exports = {
   production: {
-    connectionString: process.env.DATABASE_URL,
     dialect: process.env.DIALECT,
     host: process.env.HOST,
     username: process.env.USER,
@@ -10,7 +10,7 @@ module.exports = {
     database: process.env.DATABASE,
     operatorAliases: false,
     ssl: {
-      rejectUnauthorized: false
+      rejectUnauthorized: true,
     },
     define: {
       timestamps: true,
@@ -18,18 +18,18 @@ module.exports = {
       underscoredAll: true,
     },
   },
-  development: {
-    dialect: process.env.DIALECTENV,
-    host: process.env.HOSTENV,
-    username: process.env.USERENV,
-    password: process.env.PASSWORDENV,
-    database: process.env.DATABASEENV,
-    operatorAliases: false,
-    ssl: false,
-    define: {
-      timestamps: true,
-      underscored: true,
-      underscoredAll: true,
-    },
-  },
+  // development: {
+  //   dialect: process.env.DIALECTENV,
+  //   host: process.env.HOSTENV,
+  //   username: process.env.USERENV,
+  //   password: process.env.PASSWORDENV,
+  //   database: process.env.DATABASEENV,
+  //   operatorAliases: false,
+  //   ssl: false,
+  //   define: {
+  //     timestamps: true,
+  //     underscored: true,
+  //     underscoredAll: true,
+  //   },
+  // },
 };
