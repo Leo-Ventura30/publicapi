@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "production";
+const env = process.env.NODE_ENV || "development";
 const config = require("../../config/connection")[env];
 const db = {};
 
@@ -38,11 +38,9 @@ try {
       db[modelName].associate(db);
     }
   });
-
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
 } catch (error) {
   console.log(error.message);
-  return status(500);
 }
 module.exports = db;

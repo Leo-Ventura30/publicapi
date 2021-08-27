@@ -18,10 +18,9 @@ module.exports = {
         unique: true,
         type: Sequelize.INTEGER,
       },
-      uf: {
-        type: Sequelize.STRING,
-      },
-      city: {
+      email: {
+        allowNull: true,
+        unique: true,
         type: Sequelize.STRING,
       },
       created_at: {
